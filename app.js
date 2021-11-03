@@ -1,10 +1,15 @@
 "use strict";
 exports.__esModule = true;
-var path = require("path");
-console.log(path.sep);
-var filePath = path.join('/content', 'subfolder', 'test.txt');
-console.log(filePath);
-var base = path.basename(filePath);
-console.log(base);
-var absolute = path.resolve(__dirname, 'content', 'subfolder', 'test.txt');
-console.log(absolute);
+var http = require("http");
+var server = http.createServer(function (req, res) {
+    console.log(req.url);
+    if (req.url === '/') {
+        res.write('INDEX ALV');
+    }
+    else if (req.url === '/test') {
+        res.write('test page under construction');
+    }
+    // res.write('Holi to my api exaple with http modul')
+    res.end();
+});
+server.listen(3030);
